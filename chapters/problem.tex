@@ -1,0 +1,50 @@
+\chapter{Definição do problema}
+\label{chp:problem}
+
+Na patrulha multiagente um conjunto de agentes homogêneos e autônomos $A$ é 
+utilizado para patrulhar um determinado ambiente. O ambiente de patrulha é uma 
+área finita com pontos de interesse e caminhos entre esses pontos por onde os 
+agentes podem se locomover, tal ambiente pode ser definido formalmente por um 
+grafo não direcionado $G = (N, E)$, onde $N$ é o conjunto de vértices 
+representando os pontos de interesse da área de patrulha e $E$ é o conjunto de 
+arestas do grafo, o qual representa os caminhos entre os pontos do ambiente. 
+Outras possíveis informações estáticas e úteis sobre o ambiente podem ser 
+definidas como pesos nos vértices ou arestas do grafo $G$, a distância entre os 
+pontos, por exemplo, é uma informação bastante útil e que pode ser definida como 
+o peso das arestas. Os pesos dos vértices, por sua vez, podem ser utilizados 
+para informar à estratégia de patrulha sobre pontos de maior importância, que 
+demandam visitas mais periódicas. 
+
+De acordo com uma estratégia de patrulha $S$ os agentes percorrem o ambiente, 
+visitando os pontos de interesse continuamente durante o tempo $T$. Os instantes 
+de visitas feitas pelos agentes em cada ponto são utilizados para calcular 
+alguma métrica de patrulha $M$. A métrica de patrulha serve como medida de 
+desempenho e pode ser calculada de modo a refletir diferentes aplicações e 
+objetivos de patrulha.
+
+Neste trabalho estamos interessados em considerar a patrulha multiagente com 
+restrições na capacidade de comunicação dos agentes patrulhadores. A comunicação 
+entre agentes é definida pela estratégia de patrulha, esta pode ser distribuída, 
+onde a comunicação ocorre através de trocas de mensagens diretas entre os 
+agentes; ou centralizada, onde uma base central de comunicações é responsável 
+por receber todas as mensagens e por fazer a distribuição das mesmas, 
+enviando-as para os destinatários. 
+
+A forma de comunicação distribuída é mais suscetível à falhas devido à sua 
+natureza dinâmica. Os agentes de patrulha estarão se movendo pelo ambiente 
+durante todo o tempo e por muitas vezes poderão se encontrar isolados, fora do 
+alcance dos demais agentes. Além disso, tentar usar equipamentos de comunicação 
+mais potentes não é exatamente uma solução devido à possíveis limitações de 
+consumo de energia do agente. 
+
+Podemos modelar a restrição de comunicação como o raio de alcance máximo do 
+equipamento de comunicação utilizado pelos agentes. Como já definido, assumimos 
+agentes homogêneos, portanto todos devem possuir o mesmo alcance. Definimos a 
+cobertura de comunicação de um agente como um círculo de raio máximo $r$ que se 
+move juntamente com o agente e tem como centro a localização atual do mesmo no 
+ambiente. Esta cobertura define o alcance de comunicação de cada agente durante 
+a execução da patrulha onde, um agente fora da cobertura de outros está 
+totalmente incapacitado de se comunicar com os demais; para agentes que se 
+encontram dentro da área de cobertura de outros agentes a chance da comunicação 
+acontecer com sucesso é inversamente proporcional à distância que os agentes se 
+encontram um do outro.
