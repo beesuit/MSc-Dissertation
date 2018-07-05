@@ -1,0 +1,44 @@
+\chapter{Definição do problema} 
+\label{chp:problem}
+
+Na patrulha multiagente um conjunto de agentes homogêneos e autônomos $A =
+\{a_{1}, ..., a_{k}\}$ é utilizado para patrulhar um determinado ambiente
+durante um tempo discreto e finito $T$. O ambiente de patrulha é uma área finita
+com pontos de interesse e caminhos entre esses pontos por onde os agentes podem
+se locomover, tal ambiente pode ser definido formalmente por um grafo não
+direcionado $G = (N, E)$, onde $N$ é o conjunto de vértices representando os
+pontos de interesse da área de patrulha e $E$ é o conjunto de arestas do grafo,
+o qual representa os caminhos entre os pontos do ambiente. Em nossa definição,
+vamos representar a distância entre os pontos como os pesos das arestas do grafo
+$G$. Para simplificação consideramos apenas valores inteiros para a distância e
+agentes que percorrem distâncias inteiras em cada instante de tempo.
+
+Os agentes seguem continuamente uma estratégia de patrulha $S$, a qual é
+uniforme para todos. Os instantes de visitas feitas pelos agentes em cada ponto
+são utilizados para calcular alguma métrica de patrulha $M$. A métrica de
+patrulha serve como medida de desempenho e pode ser calculada de modo a refletir
+diferentes aplicações e objetivos de patrulha.
+
+Neste trabalho estamos interessados em considerar o grupo específico de
+estratégias de patrulha que utilizam comunicação direta entre agentes. Dentro do
+nosso problema a comunicação será modelada com restrições relacionadas ao
+alcance e decaimento do sinal. Definimos a cobertura de comunicação de um agente
+como um círculo de raio máximo $r$ que se move juntamente com o agente e tem
+como centro a localização atual do mesmo no ambiente. Esta cobertura define o
+alcance de comunicação de cada agente durante a execução da patrulha. Para
+identificar agentes dentro da mesma cobertura calculamos a distância entre
+quaisquer dois agentes como o menor caminho entre as posições dos mesmos no
+grafo $G$, considerando o peso das arestas. Dessa forma, um agente cuja
+distância para todos os outros é maior que $r$ não tem nenhum agente dentro de
+sua cobertura e, portanto, está totalmente incapacitado de se comunicar com
+outros agentes naquele momento. Seguindo a mesma linha, quando a distância entre
+quaisquer dois agentes é menor que $r$ assumimos que os mesmos são capazes de
+estabelecer comunicação. Porém, é considerada uma chance de sucesso inversamente
+proporcional ao decaimento do sinal, caculada por:
+
+$$L = 10 n \log_{10}(d) + C$$
+
+Onde, $L$ é a perda de sinal em decibéis; $n$ é o expoente de perda, baseado no
+ambiente em que o sinal está sendo propagado; $d$ é a distância entre o ponto de
+transmissão e receptação em metros; e $C$ é uma constante para adicionar perdas
+vindo do sistema.
